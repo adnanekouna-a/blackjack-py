@@ -10,7 +10,7 @@ dealer_hand = []
 
 def display(card:list) -> str:
     '''The format to display a card
-    Takes the informations about a card and displays it as |(Number)(Suit)|'''
+    Takes the information about a card and displays it as |(Number)(Suit)|'''
     return '|'+card[0]+card[1]+'|'
 
 def value(card:list) -> int:
@@ -72,19 +72,19 @@ def display_table(is_hidden:bool, dealer_hand:list, player_hand:list) -> str:
 
 if __name__ == '__main__':
     print('--> Welcome to BlackJack <--')
-    
+
     # Deck Creation and Shuffling
     for suit in suits:
         for number in numbers:
             deck.append([number, suit])
     random.shuffle(deck)
-    
+   
     # Initial Dealing
     player_hand.append(deck.pop())
     dealer_hand.append(deck.pop())
     player_hand.append(deck.pop())
     dealer_hand.append(deck.pop())
-    
+   
     # Instructions
     print('''
     ==> Instructions <==                
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     - Press 's' or 'stand' to stand.   
     - Press 'q' or 'quit' to quit.
     ''')
-    
+   
     # Gameplay
     while True:
         print(display_table(True, dealer_hand, player_hand))
@@ -102,16 +102,16 @@ if __name__ == '__main__':
         elif check_blackjack(player_hand):
             print(display_table(False, dealer_hand, player_hand))
             print('You got a blackjack! You win!')
-        try: 
+        try:
             cmd = input('> ')
             if cmd.lower() in ['q', 'quit']:
-                sys.exit() 
+                sys.exit()
             elif cmd.lower() in ['h', 'hit']:
                 player_hand.append(deck.pop())
             elif cmd.lower() in ['s', 'stand']:
                 if check_bust(dealer_hand) or check_bust(player_hand):
                     pass
-                else: 
+                else:
                     print(display_table(False, dealer_hand, player_hand))
                     if hand_value(dealer_hand) > hand_value(player_hand):
                         print('Dealer Wins!')
@@ -128,7 +128,7 @@ if __name__ == '__main__':
             print(display_table(False, dealer_hand, player_hand))
             print('You busted, Dealer wins!')
             break
-        elif hand_value(dealer_hand) > 21 and hand_value(player_hand) <= 21:
+        if hand_value(dealer_hand) > 21 and hand_value(player_hand) <= 21:
             print(display_table(False, dealer_hand, player_hand))
             print('Dealer busted, you win!')
             break
